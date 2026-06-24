@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin $ECR_URI
+
+  build:
+    commands:
+      - echo Building Docker image...
+      - docker build -t floodsense-thingsboard .
+
+  post_build:
+    commands:
+      - echo Tagging image...
+      - docker tag floodsense-thingsboard:latest $ECR_URI:latest
+      - echo Pushing image...
+      - docker push $ECR_URI:latest
