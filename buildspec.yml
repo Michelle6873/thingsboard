@@ -10,7 +10,7 @@ phases:
   build:
     commands:
       - docker pull thingsboard/tb-postgres
-      - docker tag thingsboard/tb-postgres:latest YOUR_ECR_URI:latest
+      - docker tag thingsboard/tb-postgres:latest 317429618990.dkr.ecr.us-east-1.amazonaws.com/thingsboard:latest
 
   post_build:
     commands:
